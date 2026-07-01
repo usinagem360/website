@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entre em contato com o Usinagem360.">
+  <title>Contato — Usinagem360</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="/" class="header__logo">
+        <span class="header__logo-icon">U</span>
+        <span><span class="header__logo-text">Usinagem</span><span class="header__logo-suffix">360</span></span>
+      </a>
+      <nav class="header__nav" id="nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/categoria/usinagem/" class="header__nav-link">Usinagem</a>
+        <a href="/categoria/ferramentas/" class="header__nav-link">Ferramentas</a>
+        <a href="/categoria/industria4.0/" class="header__nav-link">Indústria 4.0</a>
+        <a href="/categoria/negocios/" class="header__nav-link">Negócios</a>
+        <a href="/sobre/" class="header__nav-link">Sobre</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="theme-toggle" onclick="window.toggleTheme()"><span class="theme-toggle__icon" id="theme-toggle-icon">🌙</span></button>
+        <button class="header__mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+  <div class="header__mobile-overlay" id="mobile-overlay"></div>
+
+  <div class="breadcrumb" style="max-width:700px;margin:0 auto;padding:16px 24px">
+    <a href="/">Início</a>
+    <span class="breadcrumb__separator">/</span>
+    <span>Contato</span>
+  </div>
+
+  <main class="page-content">
+    <h1>Entre em Contato</h1>
+
+    <p>
+      Tem uma sugestão de pauta? Conhece uma fonte que deveríamos acompanhar? 
+      Quer anunciar no Usinagem360 ou simplesmente mandar um feedback? 
+      Preencha o formulário abaixo e responderemos em até 48 horas.
+    </p>
+
+    <form class="contact-form" action="https://formspree.io/f/SEU_FORM_ID" method="POST">
+      <div class="form-group">
+        <label class="form-label" for="name">Nome</label>
+        <input class="form-input" type="text" id="name" name="name" required placeholder="Seu nome">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" name="email" required placeholder="seu@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="subject">Assunto</label>
+        <select class="form-input" id="subject" name="subject">
+          <option value="">Selecione um assunto</option>
+          <option value="pauta">Sugerir pauta</option>
+          <option value="fonte">Indicar fonte</option>
+          <option value="anuncio">Anunciar no site</option>
+          <option value="parceria">Proposta de parceria</option>
+          <option value="feedback">Feedback</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">Mensagem</label>
+        <textarea class="form-textarea" id="message" name="message" required placeholder="Sua mensagem..."></textarea>
+      </div>
+      <button class="form-submit" type="submit">Enviar Mensagem</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo"><span class="footer__logo-icon">U</span><span>Usinagem360</span></a>
+        <p class="footer__description">O portal de notícias sobre usinagem, ferramentas de corte, máquinas CNC, automação industrial e Indústria 4.0 no Brasil.</p>
+      </div>
+      <div>
+        <h4 class="footer__column-title">Categorias</h4>
+        <a href="/categoria/usinagem/" class="footer__link">Usinagem</a>
+        <a href="/categoria/ferramentas/" class="footer__link">Ferramentas</a>
+        <a href="/categoria/maquinas/" class="footer__link">Máquinas</a>
+        <a href="/categoria/automacao/" class="footer__link">Automação</a>
+        <a href="/categoria/industria4.0/" class="footer__link">Indústria 4.0</a>
+        <a href="/categoria/ia/" class="footer__link">IA na Indústria</a>
+      </div>
+      <div>
+        <h4 class="footer__column-title">Links</h4>
+        <a href="/sobre/" class="footer__link">Sobre</a>
+        <a href="/contato/" class="footer__link">Contato</a>
+        <a href="/anuncie/" class="footer__link">Anuncie</a>
+        <a href="/politica-de-privacidade/" class="footer__link">Política de Privacidade</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; <span id="current-year">2025</span> Usinagem360</span>
+    </div>
+  </footer>
+
+  <script src="/public/js/theme.js"></script>
+  <script src="/public/js/main.js"></script>
+</body>
+</html>

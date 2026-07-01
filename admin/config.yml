@@ -1,0 +1,56 @@
+# Usinagem360 — Decap CMS Configuration
+# Documentação: https://decapcms.org/docs
+
+backend:
+  name: github
+  repo: usinagem360/website
+  branch: main
+  commit_messages:
+    create: "📝 Novo post: {{slug}}"
+    update: "✏️ Atualizado: {{slug}}"
+    delete: "🗑️ Removido: {{slug}}"
+    uploadMedia: "🖼️ Mídia enviada: {{path}}"
+    deleteMedia: "🗑️ Mídia removida: {{path}}"
+
+publish_mode: editorial_workflow
+
+media_folder: "public/images"
+public_folder: "/public/images"
+
+collections:
+  - name: "posts"
+    label: "Notícias"
+    label_singular: "Notícia"
+    folder: "content/posts"
+    create: true
+    delete: true
+    format: "json"
+    extension: "json"
+    identifier_field: "slug"
+    slug: "{{slug}}"
+    summary: "{{title}} — {{category}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Título", name: "title", widget: "string", required: true }
+      - { label: "Slug (URL)", name: "slug", widget: "string", required: true, hint: "Ex: novo-lancamento-sandvik" }
+      - label: "Categoria"
+        name: "category"
+        widget: "select"
+        required: true
+        options:
+          - { label: "⚙️ Usinagem", value: "usinagem" }
+          - { label: "🔧 Ferramentas", value: "ferramentas" }
+          - { label: "🏭 Máquinas", value: "maquinas" }
+          - { label: "🤖 Automação", value: "automacao" }
+          - { label: "📡 Indústria 4.0", value: "industria4.0" }
+          - { label: "🧠 IA na Indústria", value: "ia" }
+          - { label: "📊 Negócios", value: "negocios" }
+          - { label: "📅 Eventos", value: "eventos" }
+      - { label: "Data de Publicação", name: "date", widget: "datetime", required: true, format: "YYYY-MM-DDTHH:mm:ss.SSSZ", hint: "Use data futura para agendar." }
+      - { label: "Imagem de Capa (URL)", name: "image", widget: "string", required: false, hint: "URL real. Deixe vazio para placeholder." }
+      - { label: "Resumo", name: "excerpt", widget: "text", required: false, hint: "Exibido no card da homepage." }
+      - { label: "Conteúdo", name: "content", widget: "markdown", required: true }
+      - { label: "Fonte", name: "source", widget: "string", required: false, hint: "Ex: Sandvik, CIMM, Manufacturing Tomorrow" }
+      - { label: "URL da Fonte", name: "sourceUrl", widget: "string", required: false, hint: "Link original da notícia" }
+      - { label: "Autor", name: "author", widget: "string", required: false, default: "Usinagem360" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça o Usinagem360 — o portal de notícias independente sobre usinagem, ferramentas de corte e indústria no Brasil.">
+  <title>Sobre — Usinagem360</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="/" class="header__logo">
+        <span class="header__logo-icon">U</span>
+        <span><span class="header__logo-text">Usinagem</span><span class="header__logo-suffix">360</span></span>
+      </a>
+      <nav class="header__nav" id="nav">
+        <a href="/" class="header__nav-link">Início</a>
+        <a href="/categoria/usinagem/" class="header__nav-link">Usinagem</a>
+        <a href="/categoria/ferramentas/" class="header__nav-link">Ferramentas</a>
+        <a href="/categoria/industria4.0/" class="header__nav-link">Indústria 4.0</a>
+        <a href="/categoria/negocios/" class="header__nav-link">Negócios</a>
+        <a href="/sobre/" class="header__nav-link header__nav-link--active">Sobre</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="theme-toggle" onclick="window.toggleTheme()"><span class="theme-toggle__icon" id="theme-toggle-icon">🌙</span></button>
+        <button class="header__mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+  <div class="header__mobile-overlay" id="mobile-overlay"></div>
+
+  <div class="breadcrumb" style="max-width:700px;margin:0 auto;padding:16px 24px">
+    <a href="/">Início</a>
+    <span class="breadcrumb__separator">/</span>
+    <span>Sobre</span>
+  </div>
+
+  <main class="page-content">
+    <h1>Sobre o Usinagem360</h1>
+
+    <p>
+      O <strong>Usinagem360</strong> nasceu da necessidade de um portal verdadeiramente dedicado 
+      ao setor de usinagem e manufatura no Brasil. Enquanto existem revistas técnicas e sites 
+      segmentados, faltava um espaço que reunisse diariamente — de forma curada e acessível — 
+      as principais notícias sobre usinagem, ferramentas de corte, máquinas CNC, automação 
+      industrial e Indústria 4.0.
+    </p>
+
+    <p>
+      Somos um portal independente, sem vínculo com fabricantes ou distribuidores, o que nos 
+      permite trazer uma visão imparcial e abrangente do setor. Nosso conteúdo é produzido 
+      através de curadoria inteligente das melhores fontes nacionais e internacionais, 
+      sempre com a devida atribuição e link para a fonte original.
+    </p>
+
+    <h2>Nossa Missão</h2>
+    <p>
+      Democratizar o acesso à informação de qualidade sobre usinagem e manufatura para 
+      profissionais, estudantes e empresas do setor industrial brasileiro.
+    </p>
+
+    <h2>Nossos Valores</h2>
+    <p>
+      <strong>Independência:</strong> não somos patrocinados por nenhum fabricante ou distribuidor específico.<br>
+      <strong>Qualidade técnica:</strong> cada notícia é selecionada por sua relevância para o setor.<br>
+      <strong>Acessibilidade:</strong> conteúdo em português claro, sem jargões desnecessários.<br>
+      <strong>Transparência:</strong> sempre citamos a fonte original de cada conteúdo.
+    </p>
+
+    <h2>Contato</h2>
+    <p>
+      Quer sugerir uma pauta, indicar uma fonte ou falar sobre parcerias? 
+      <a href="/contato/">Entre em contato</a>.
+    </p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo"><span class="footer__logo-icon">U</span><span>Usinagem360</span></a>
+        <p class="footer__description">O portal de notícias sobre usinagem, ferramentas de corte, máquinas CNC, automação industrial e Indústria 4.0 no Brasil.</p>
+      </div>
+      <div>
+        <h4 class="footer__column-title">Categorias</h4>
+        <a href="/categoria/usinagem/" class="footer__link">Usinagem</a>
+        <a href="/categoria/ferramentas/" class="footer__link">Ferramentas</a>
+        <a href="/categoria/maquinas/" class="footer__link">Máquinas</a>
+        <a href="/categoria/automacao/" class="footer__link">Automação</a>
+        <a href="/categoria/industria4.0/" class="footer__link">Indústria 4.0</a>
+        <a href="/categoria/ia/" class="footer__link">IA na Indústria</a>
+      </div>
+      <div>
+        <h4 class="footer__column-title">Links</h4>
+        <a href="/sobre/" class="footer__link">Sobre</a>
+        <a href="/contato/" class="footer__link">Contato</a>
+        <a href="/anuncie/" class="footer__link">Anuncie</a>
+        <a href="/politica-de-privacidade/" class="footer__link">Política de Privacidade</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; <span id="current-year">2025</span> Usinagem360</span>
+    </div>
+  </footer>
+
+  <script src="/public/js/theme.js"></script>
+  <script src="/public/js/main.js"></script>
+</body>
+</html>

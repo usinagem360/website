@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Usinagem360 — Sua fonte de notícias sobre usinagem, ferramentas, máquinas, automação, Indústria 4.0, IA na indústria e negócios do setor industrial brasileiro.">
+  <meta name="keywords" content="usinagem, notícias usinagem, ferramentas de corte, máquinas CNC, automação industrial, indústria 4.0, IA indústria">
+  <meta property="og:title" content="Usinagem360 — Notícias de Usinagem, Indústria e Tecnologia">
+  <meta property="og:description" content="Sua fonte de notícias sobre usinagem, ferramentas, máquinas, automação e Indústria 4.0 no Brasil.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://usinagem360.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Usinagem360 — Notícias de Usinagem, Indústria e Tecnologia</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="/" class="header__logo">
+        <span class="header__logo-icon">U</span>
+        <span>
+          <span class="header__logo-text">Usinagem</span>
+          <span class="header__logo-suffix">360</span>
+        </span>
+      </a>
+
+      <nav class="header__nav" id="nav">
+        <a href="/" class="header__nav-link header__nav-link--active">Início</a>
+        <a href="/categoria/usinagem/" class="header__nav-link">Usinagem</a>
+        <a href="/categoria/ferramentas/" class="header__nav-link">Ferramentas</a>
+        <a href="/categoria/industria4.0/" class="header__nav-link">Indústria 4.0</a>
+        <a href="/categoria/negocios/" class="header__nav-link">Negócios</a>
+        <a href="/sobre/" class="header__nav-link">Sobre</a>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="theme-toggle" onclick="window.toggleTheme()" aria-label="Alternar tema">
+          <span class="theme-toggle__icon" id="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="header__mobile-toggle" id="mobile-toggle" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="header__mobile-overlay" id="mobile-overlay"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__inner">
+      <h1 class="hero__headline">
+        As <span class="hero__headline-highlight">principais notícias</span><br>
+        da usinagem brasileira
+      </h1>
+      <p class="hero__subtitle">
+        Curadoria inteligente dos melhores conteúdos sobre usinagem, ferramentas de corte, 
+        máquinas CNC, automação e Indústria 4.0 — tudo em um só lugar.
+      </p>
+
+      <!-- Featured Posts -->
+      <div class="hero__featured" id="featured-posts">
+        <!-- Injected by JS from posts.json, with fallback -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Posts Grid -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">Últimas Notícias</h2>
+        <a href="/categoria/" class="section-link">Todas as categorias →</a>
+      </div>
+      <div class="posts-grid" id="posts-list">
+        <div class="loading-spinner">Carregando notícias</div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button class="pagination__btn pagination__btn--disabled" id="prev-page">← Anterior</button>
+        <button class="pagination__btn pagination__btn--active" id="page-1">1</button>
+        <button class="pagination__btn" id="page-2">2</button>
+        <button class="pagination__btn" id="page-3">3</button>
+        <button class="pagination__btn" id="next-page">Próxima →</button>
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Ad Zone -->
+      <div class="sidebar__card">
+        <div class="ad-zone">
+          <span class="ad-zone__label">Publicidade</span>
+          <span>Seu anúncio aqui</span>
+        </div>
+      </div>
+
+      <!-- Recentes -->
+      <div class="sidebar__card">
+        <h3 class="sidebar__title">Recentes</h3>
+        <div id="sidebar-recent">
+          <div class="loading-spinner" style="padding:16px 0">Carregando...</div>
+        </div>
+      </div>
+
+      <!-- Categorias -->
+      <div class="sidebar__card">
+        <h3 class="sidebar__title">Categorias</h3>
+        <div class="sidebar__categories">
+          <a href="/categoria/usinagem/" class="sidebar__category">
+            <span>⚙️ Usinagem</span>
+            <span class="sidebar__category-count">—</span>
+          </a>
+          <a href="/categoria/ferramentas/" class="sidebar__category">
+            <span>🔧 Ferramentas</span>
+            <span class="sidebar__category-count">—</span>
+          </a>
+          <a href="/categoria/maquinas/" class="sidebar__category">
+            <span>🏭 Máquinas</span>
+            <span class="sidebar__category-count">—</span>
+          </a>
+          <a href="/categoria/automacao/" class="sidebar__category">
+            <span>🤖 Automação</span>
+            <span class="sidebar__category-count">—</span>
+          </a>
+          <a href="/categoria/industria4.0/" class="sidebar__category">
+            <span>📡 Indústria 4.0</span>
+            <span class="sidebar__category-count">—</span>
+          </a>
+          <a href="/categoria/ia/" class="sidebar__category">
+            <span>🧠 IA na Indústria</span>
+            <span class="sidebar__category-count">—</span>
+          </a>
+          <a href="/categoria/negocios/" class="sidebar__category">
+            <span>📊 Negócios</span>
+            <span class="sidebar__category-count">—</span>
+          </a>
+          <a href="/categoria/eventos/" class="sidebar__category">
+            <span>📅 Eventos</span>
+            <span class="sidebar__category-count">—</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar__card">
+        <h3 class="sidebar__title">Newsletter</h3>
+        <p class="newsletter-form__text">Receba as principais notícias da usinagem direto no seu email.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();alert('Newsletter em breve!');">
+          <input type="email" class="newsletter-form__input" placeholder="Seu melhor email" required>
+          <button type="submit" class="newsletter-form__button">Assinar grátis</button>
+        </form>
+      </div>
+
+      <!-- Ad Zone 2 -->
+      <div class="sidebar__card">
+        <div class="ad-zone">
+          <span class="ad-zone__label">Publicidade</span>
+          <span>Seu anúncio aqui</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo">
+          <span class="footer__logo-icon">U</span>
+          <span>Usinagem360</span>
+        </a>
+        <p class="footer__description">
+          O portal de notícias independente sobre usinagem, ferramentas de corte, 
+          máquinas CNC, automação industrial e Indústria 4.0 no Brasil.
+        </p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="LinkedIn">in</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">YT</a>
+          <a href="#" class="footer__social-link" aria-label="Instagram">IG</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter/X">X</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__column-title">Categorias</h4>
+        <a href="/categoria/usinagem/" class="footer__link">Usinagem</a>
+        <a href="/categoria/ferramentas/" class="footer__link">Ferramentas</a>
+        <a href="/categoria/maquinas/" class="footer__link">Máquinas</a>
+        <a href="/categoria/automacao/" class="footer__link">Automação</a>
+        <a href="/categoria/industria4.0/" class="footer__link">Indústria 4.0</a>
+        <a href="/categoria/ia/" class="footer__link">IA na Indústria</a>
+      </div>
+      <div>
+        <h4 class="footer__column-title">Links</h4>
+        <a href="/sobre/" class="footer__link">Sobre</a>
+        <a href="/contato/" class="footer__link">Contato</a>
+        <a href="/anuncie/" class="footer__link">Anuncie</a>
+        <a href="/politica-de-privacidade/" class="footer__link">Política de Privacidade</a>
+        <a href="/feed/" class="footer__link">Feed RSS</a>
+      </div>
+      <div>
+        <h4 class="footer__column-title">Parceiros</h4>
+        <a href="#" class="footer__link">Seja um parceiro</a>
+        <a href="#" class="footer__link">Indique uma fonte</a>
+        <a href="#" class="footer__link">Sugira uma pauta</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; <span id="current-year">2025</span> Usinagem360. Todos os direitos reservados.</span>
+      <span>Feito com ⚙️ para a indústria brasileira</span>
+    </div>
+  </footer>
+
+  <script src="/public/js/theme.js"></script>
+  <script src="/public/js/main.js"></script>
+  <script src="/public/js/posts.js"></script>
+</body>
+</html>
