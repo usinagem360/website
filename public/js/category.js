@@ -19,6 +19,11 @@
   };
 
   function getCategoryFromPath() {
+    // Primeiro tenta query param (?cat=usinagem) — usado pelo 404.html redirect
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get('cat');
+    if (catParam) return catParam;
+    // Fallback: pathname (quando acessa categoria.html diretamente com URL limpa)
     const match = window.location.pathname.match(/\/categoria\/([^/]+)/);
     return match ? match[1] : null;
   }

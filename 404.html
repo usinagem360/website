@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecionando...</title>
+  <style>
+    body { font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #0d1117; color: #c9d1d9; }
+    .loader { text-align: center; }
+    .spinner { width: 40px; height: 40px; border: 3px solid #30363d; border-top-color: #58a6ff; border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+  <script>
+    (function() {
+      var path = window.location.pathname.replace(/\/+$/, ''); // remove trailing slash(es)
+
+      // Páginas estáticas: /sobre → sobre.html, etc.
+      var staticPages = ['/sobre', '/contato', '/anuncie', '/politica-de-privacidade', '/feed'];
+      if (staticPages.indexOf(path) !== -1) {
+        window.location.replace(path + '.html');
+        return;
+      }
+
+      // Páginas de categoria: /categoria ou /categoria/usinagem
+      var catMatch = path.match(/^\/categoria(?:\/([^\/]+))?/);
+      if (catMatch) {
+        var cat = catMatch[1] || '';
+        window.location.replace('/categoria.html' + (cat ? '?cat=' + encodeURIComponent(cat) : ''));
+        return;
+      }
+
+      // Páginas de artigo: /artigo/meu-slug
+      var artMatch = path.match(/^\/artigo\/([^\/]+)/);
+      if (artMatch) {
+        window.location.replace('/artigo.html?slug=' + encodeURIComponent(artMatch[1]));
+        return;
+      }
+
+      // Qualquer outra coisa: redireciona pra home
+      window.location.replace('/');
+    })();
+  </script>
+</head>
+<body>
+  <div class="loader">
+    <div class="spinner"></div>
+    <p>Redirecionando...</p>
+  </div>
+</body>
+</html>

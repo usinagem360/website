@@ -10,8 +10,13 @@
   const relatedContainer = document.getElementById('related-posts');
 
   function getSlug() {
+    // Primeiro tenta query param (?slug=meu-slug) — usado pelo 404.html redirect
+    const params = new URLSearchParams(window.location.search);
+    const slugParam = params.get('slug');
+    if (slugParam) return slugParam;
+    // Fallback: pathname (quando acessa artigo.html diretamente com URL limpa)
     const path = window.location.pathname;
-    const match = path.match(/\/artigo\/([^/]+)\//);
+    const match = path.match(/\/artigo\/([^/]+)\/?/);
     return match ? match[1] : null;
   }
 
