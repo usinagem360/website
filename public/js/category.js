@@ -5,7 +5,7 @@
 (function() {
   'use strict';
 
-  const POSTS_URL = '/content/posts/posts.json';
+  const POSTS_URL = 'content/posts/posts.json';
 
   const CATEGORIES = {
     'usinagem': { icon: '⚙️', label: 'Usinagem', desc: 'Notícias sobre processos de usinagem, torneamento, fresamento, furação, retificação e tecnologias de remoção de cavacos.' },

@@ -11,7 +11,8 @@
   <meta property="og:url" content="https://usinagem360.com">
   <meta name="twitter:card" content="summary_large_image">
   <title>Usinagem360 — Notícias de Usinagem, Indústria e Tecnologia</title>
-  <link rel="stylesheet" href="/public/css/style.css">
+  <script>document.documentElement.style.setProperty('--site-base', `/${(window.location.pathname.match(/^\/([^/]+)/)||[])[1]||''}`.replace(/\/$/,'')||'');</script>
+  <link rel="stylesheet" href="public/css/style.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
 </head>
 <body>
@@ -216,8 +217,9 @@
     </div>
   </footer>
 
-  <script src="/public/js/theme.js"></script>
-  <script src="/public/js/main.js"></script>
-  <script src="/public/js/posts.js"></script>
+  <script src="public/js/config.js"></script>
+  <script src="public/js/theme.js"></script>
+  <script src="public/js/main.js"></script>
+  <script src="public/js/posts.js"></script>
 </body>
 </html>

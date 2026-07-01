@@ -6,7 +6,7 @@
 (function() {
   'use strict';
 
-  const POSTS_URL = '/content/posts/posts.json';
+  const POSTS_URL = 'content/posts/posts.json';
   let allPosts = [];
   let currentPage = 1;
   const PER_PAGE = 10;
