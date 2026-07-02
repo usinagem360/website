@@ -30,8 +30,8 @@
     const icon = document.getElementById('theme-toggle-icon');
     if (!icon) return;
     icon.innerHTML = theme === 'dark'
-      ? '<i class="fi-rr-sun" style="font-size:1.2rem;line-height:1"></i>'
-      : '<i class="fi-rr-moon" style="font-size:1.2rem;line-height:1"></i>';
+      ? '<i class="fi-rr-sun"></i>'
+      : '<i class="fi-rr-moon"></i>';
   }
 
   // Init

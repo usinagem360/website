@@ -263,7 +263,14 @@ ul, ol { list-style: none; }
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.2s;
-  font-size: 1.125rem;
+  font-size: 0;
+}
+.theme-toggle i {
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .theme-toggle:hover {
   background: var(--color-surface-hover);
