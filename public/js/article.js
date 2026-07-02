@@ -6,6 +6,12 @@
   'use strict';
 
   const POSTS_URL = 'content/posts/posts.json';
+  var CATEGORY_ICONS = {'usinagem': 'fi-rr-gears', 'ferramentas': 'fi-rr-wrench-alt', 'maquinas': 'fi-rr-cubes', 'automacao': 'fi-rr-robotic-arm', 'industria4.0': 'fi-rr-chart-network', 'ia': 'fi-rr-brain', 'negocios': 'fi-rr-chart-line-up', 'eventos': 'fi-rr-calendar'};
+  function iconHtml(cat) {
+    var cls = CATEGORY_ICONS[cat] || 'fi-rr-cubes';
+    return '<i class="' + cls + '" style="font-size:1.2em;vertical-align:middle"></i>';
+  }
+
   const container = document.getElementById('article-container');
   const relatedContainer = document.getElementById('related-posts');
 
@@ -24,7 +30,7 @@
     if (!post) {
       container.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state__icon">🔍</div>
+          <div class="empty-state__icon"><i class="fi-rr-cubes" style="font-size:2rem"></i></div>
           <p class="empty-state__text">Artigo não encontrado.</p>
           <a href="/" style="color:var(--color-primary);margin-top:16px;display:inline-block">← Voltar ao início</a>
         </div>
@@ -54,7 +60,7 @@
 
     container.innerHTML = `
       <header class="article-header">
-        <span class="article-category" style="background:var(--cat-${post.category})">${post.category}</span>
+        <span class="article-category" style="background:var(--cat-${post.category})">${iconHtml(post.category)} ${post.category}</span>
         <h1 class="article-title">${post.title}</h1>
         <div class="article-meta">
           <span class="article-meta__author">
@@ -74,7 +80,7 @@
 
       ${post.sourceUrl ? `
       <div class="article-source">
-        📰 <strong>Fonte original:</strong> <a href="${post.sourceUrl}" target="_blank" rel="nofollow noopener">${post.source || 'Link original'}</a>
+        <i class="fi-rr-link"></i> <strong>Fonte original:</strong> <a href="${post.sourceUrl}" target="_blank" rel="nofollow noopener">${post.source || 'Link original'}</a>
       </div>` : ''}
 
       <div class="article-tags">
@@ -98,7 +104,7 @@
       <a href="/artigo/${p.slug}/" class="post-card">
         ${p.image
           ? `<img class="post-card__image" src="${p.image}" alt="${p.title}" loading="lazy">`
-          : `<div class="post-card__image-placeholder">📰</div>`}
+          : `<div class="post-card__image-placeholder">${iconHtml(p.category)}</div>`}
         <div class="post-card__body">
           <div class="post-card__meta">
             <span class="post-card__category" data-category="${p.category}">${p.category}</span>

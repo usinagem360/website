@@ -13,18 +13,22 @@
   const RECENT_COUNT = 5;
 
   const CATEGORY_ICONS = {
-    'usinagem': '⚙️',
-    'ferramentas': '🔧',
-    'maquinas': '🏭',
-    'automacao': '🤖',
-    'industria4.0': '📡',
-    'ia': '🧠',
-    'negocios': '📊',
-    'eventos': '📅'
+    'usinagem': 'fi-rr-gears',
+    'ferramentas': 'fi-rr-wrench-alt',
+    'maquinas': 'fi-rr-cubes',
+    'automacao': 'fi-rr-robotic-arm',
+    'industria4.0': 'fi-rr-chart-network',
+    'ia': 'fi-rr-brain',
+    'negocios': 'fi-rr-chart-line-up',
+    'eventos': 'fi-rr-calendar'
   };
 
   function getCategoryIcon(cat) {
-    return CATEGORY_ICONS[cat] || '📰';
+    return CATEGORY_ICONS[cat] || 'fi-rr-cubes';
+  }
+
+  function iconHtml(iconClass) {
+    return '<i class="' + iconClass + '" style="font-size:1.2em;vertical-align:middle"></i>';
   }
 
   function formatDate(dateStr) {
@@ -52,14 +56,14 @@
     if (post.image) {
       return `<img class="post-card__image" src="${post.image}" alt="${post.title}" loading="lazy">`;
     }
-    return `<div class="post-card__image-placeholder">${getCategoryIcon(post.category)}</div>`;
+    return `<div class="post-card__image-placeholder">${iconHtml(getCategoryIcon(post.category))}</div>`;
   }
 
   function getFeatureImageHtml(post) {
     if (post.image) {
       return `<img class="hero__featured-image" src="${post.image}" alt="${post.title}" loading="lazy">`;
     }
-    return `<div class="hero__featured-image-placeholder">${getCategoryIcon(post.category)}</div>`;
+    return `<div class="hero__featured-image-placeholder">${iconHtml(getCategoryIcon(post.category))}</div>`;
   }
 
   function renderPostCard(post) {
@@ -82,7 +86,7 @@
   function renderSidebarPost(post) {
     const img = post.image
       ? `<img class="sidebar__post-image" src="${post.image}" alt="" loading="lazy">`
-      : `<div class="sidebar__post-image" style="background:var(--color-surface-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem">${getCategoryIcon(post.category)}</div>`;
+      : `<div class="sidebar__post-image" style="background:var(--color-surface-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem">${iconHtml(getCategoryIcon(post.category))}</div>`;
     return `
       <a href="/artigo/${post.slug}/" class="sidebar__post">
         ${img}
@@ -151,7 +155,7 @@
         if (list) {
           list.innerHTML = `
             <div class="empty-state">
-              <div class="empty-state__icon">📰</div>
+              <div class="empty-state__icon"><i class="fi-rr-cubes" style="font-size:2rem"></i></div>
               <p class="empty-state__text">Nenhuma notícia disponível no momento.</p>
               <p style="font-size:var(--font-size-sm);color:var(--color-text-muted);margin-top:8px">
                 As notícias aparecerão aqui assim que o pipeline de conteúdo for ativado.
@@ -162,7 +166,7 @@
         if (featured) {
           featured.innerHTML = `
             <div class="hero__featured-card hero__featured-card--main">
-              <div class="hero__featured-image-placeholder">⚙️</div>
+              <div class="hero__featured-image-placeholder"><i class="fi-rr-gears" style="font-size:2rem"></i></div>
               <div class="hero__featured-body">
                 <span class="hero__featured-title">Bem-vindo ao Usinagem360</span>
                 <p class="hero__featured-excerpt" style="color:var(--color-text-secondary)">
@@ -193,7 +197,7 @@
     if (pagePosts.length === 0) {
       list.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state__icon">📰</div>
+          <div class="empty-state__icon"><i class="fi-rr-cubes" style="font-size:2rem"></i></div>
           <p class="empty-state__text">Você já viu tudo por aqui.</p>
           <p style="font-size:var(--font-size-sm);color:var(--color-text-muted)">Volte mais tarde para mais notícias.</p>
         </div>

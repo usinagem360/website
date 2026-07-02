@@ -1,43 +1,47 @@
 /* ============================================
-   Usinagem360 — Design System v2
-   Tema: Industrial (60%) + Moderno (40%)
+   Usinagem360 — Industrial Design System v3
+   Tema: Aço & Chão de Fábrica
    ============================================ */
 
 /* ---- Fontes ---- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 
-/* ---- Variáveis do Tema Claro (padrão) ---- */
+/* ---- Flaticon UIcons ---- */
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+
+/* ---- Variáveis do Tema Claro ---- */
 :root {
-  --color-primary: #C62828;
-  --color-primary-dark: #8E0000;
-  --color-primary-light: #FF5F52;
-  --color-primary-subtle: #FFF5F5;
-  --color-secondary: #1A237E;
-  --color-secondary-light: #534BAE;
-  --color-accent: #FF6F00;
-  --color-accent-light: #FFA040;
+  --color-primary: #B87333;        /* Copper / Bronze */
+  --color-primary-dark: #8B5E24;
+  --color-primary-light: #D4924A;
+  --color-primary-subtle: #1C1510;
+  --color-secondary: #4A7DA5;      /* Steel Blue */
+  --color-secondary-light: #6B9DC5;
+  --color-accent: #D4785C;         /* Oxidized copper */
+  --color-accent-light: #E8997A;
 
-  --color-bg: #FAFAFA;
-  --color-surface: #FFFFFF;
-  --color-surface-hover: #F7F7F7;
-  --color-surface-alt: #F0F0F0;
-  --color-border: #E8E8E8;
-  --color-border-light: #F3F3F3;
+  --color-bg: #0D0F12;
+  --color-surface: #15181E;
+  --color-surface-hover: #1C2028;
+  --color-surface-alt: #1F232D;
+  --color-border: #2A2F3A;
+  --color-border-light: #1F232B;
 
-  --color-text: #1A1A2E;
-  --color-text-secondary: #5A5A7A;
-  --color-text-muted: #A0A0B8;
-  --color-text-inverse: #FFFFFF;
+  --color-text: #E4E8ED;
+  --color-text-secondary: #9AA0AB;
+  --color-text-muted: #6B7280;
+  --color-text-inverse: #0D0F12;
 
-  --cat-usinagem: #C62828;
-  --cat-ferramentas: #1565C0;
-  --cat-maquinas: #2E7D32;
-  --cat-automacao: #6A1B9A;
-  --cat-industria40: #00838F;
-  --cat-ia: #E65100;
-  --cat-negocios: #37474F;
-  --cat-eventos: #AD1457;
+  --cat-usinagem: #D4785C;
+  --cat-ferramentas: #4A7DA5;
+  --cat-maquinas: #6B8E5A;
+  --cat-automacao: #8B6BAB;
+  --cat-industria40: #4A9E9E;
+  --cat-ia: #D4943A;
+  --cat-negocios: #7A8A9A;
+  --cat-eventos: #B86B8E;
 
   --max-width: 1200px;
   --header-height: 68px;
@@ -48,60 +52,77 @@
   --font-serif: 'DM Serif Display', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.03);
-  --shadow-lg: 0 10px 24px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
-  --shadow-xl: 0 20px 32px rgba(0,0,0,0.10), 0 8px 12px rgba(0,0,0,0.04);
-  --shadow-card: 0 2px 8px rgba(198,40,40,0.06);
-  --shadow-card-hover: 0 8px 24px rgba(198,40,40,0.12);
-
-  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px; --radius-xl: 18px;
-}
-
-[data-theme="dark"] {
-  --color-primary: #EF5350;
-  --color-primary-dark: #C62828;
-  --color-primary-light: #FF8A80;
-  --color-primary-subtle: #2A1515;
-  --color-secondary: #7986CB;
-  --color-accent: #FFB74D;
-
-  --color-bg: #0B0E14;
-  --color-surface: #131820;
-  --color-surface-hover: #1A2130;
-  --color-surface-alt: #1C2333;
-  --color-border: #2A3040;
-  --color-border-light: #1F2636;
-
-  --color-text: #E6EDF3;
-  --color-text-secondary: #8B949E;
-  --color-text-muted: #6B7280;
-
   --shadow-xs: 0 1px 2px rgba(0,0,0,0.3);
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
   --shadow-lg: 0 10px 24px rgba(0,0,0,0.5);
-  --shadow-xl: 0 20px 32px rgba(0,0,0,0.5);
-  --shadow-card: 0 2px 8px rgba(0,0,0,0.3);
-  --shadow-card-hover: 0 8px 24px rgba(239,83,80,0.15);
+  --shadow-xl: 0 20px 32px rgba(0,0,0,0.6);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-card-hover: 0 8px 24px rgba(184,115,51,0.15);
+
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px; --radius-xl: 18px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --color-primary: #EF5350;
-    --color-primary-dark: #C62828;
-    --color-primary-light: #FF8A80;
-    --color-primary-subtle: #2A1515;
-    --color-bg: #0B0E14;
-    --color-surface: #131820;
-    --color-surface-hover: #1A2130;
-    --color-surface-alt: #1C2333;
-    --color-border: #2A3040;
-    --color-border-light: #1F2636;
-    --color-text: #E6EDF3;
-    --color-text-secondary: #8B949E;
-    --color-text-muted: #6B7280;
+/* ---- Tema Claro (opcional) ---- */
+[data-theme="light"] {
+  --color-primary: #B87333;
+  --color-primary-dark: #8B5E24;
+  --color-primary-light: #D4924A;
+  --color-primary-subtle: #FDF6EF;
+  --color-secondary: #3A6B91;
+  --color-secondary-light: #5A8BB1;
+  --color-accent: #D4785C;
+
+  --color-bg: #F4F2EF;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F0EEEA;
+  --color-surface-alt: #E8E5E0;
+  --color-border: #D4D0C8;
+  --color-border-light: #E6E2DC;
+
+  --color-text: #1A1A1A;
+  --color-text-secondary: #5A5A5A;
+  --color-text-muted: #8A8A8A;
+  --color-text-inverse: #FFFFFF;
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.07);
+  --shadow-lg: 0 10px 24px rgba(0,0,0,0.08);
+  --shadow-xl: 0 20px 32px rgba(0,0,0,0.10);
+  --shadow-card: 0 2px 8px rgba(184,115,51,0.06);
+  --shadow-card-hover: 0 8px 24px rgba(184,115,51,0.12);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-primary: #B87333;
+    --color-primary-dark: #8B5E24;
+    --color-primary-light: #D4924A;
+    --color-primary-subtle: #FDF6EF;
+    --color-secondary: #3A6B91;
+    --color-secondary-light: #5A8BB1;
+    --color-accent: #D4785C;
+
+    --color-bg: #F4F2EF;
+    --color-surface: #FFFFFF;
+    --color-surface-hover: #F0EEEA;
+    --color-surface-alt: #E8E5E0;
+    --color-border: #D4D0C8;
+    --color-border-light: #E6E2DC;
+
+    --color-text: #1A1A1A;
+    --color-text-secondary: #5A5A5A;
+    --color-text-muted: #8A8A8A;
+    --color-text-inverse: #FFFFFF;
+
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.07);
+    --shadow-lg: 0 10px 24px rgba(0,0,0,0.08);
+    --shadow-xl: 0 20px 32px rgba(0,0,0,0.10);
+    --shadow-card: 0 2px 8px rgba(184,115,51,0.06);
+    --shadow-card-hover: 0 8px 24px rgba(184,115,51,0.12);
   }
 }
 
@@ -123,12 +144,15 @@ body {
   line-height: 1.7;
   color: var(--color-text);
   background: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(184,115,51,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(74,125,165,0.03) 0%, transparent 50%);
   transition: background 0.3s ease, color 0.3s ease;
   min-height: 100vh;
 }
 
 a { color: var(--color-primary); text-decoration: none; transition: all 0.2s; }
-a:hover { color: var(--color-primary-dark); }
+a:hover { color: var(--color-primary-light); }
 img { max-width: 100%; height: auto; display: block; }
 ul, ol { list-style: none; }
 
@@ -141,13 +165,13 @@ ul, ol { list-style: none; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
 
 /* ============================================
-   HEADER — Glassmorphism
+   HEADER — Steel & Glass
    ============================================ */
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255,255,255,0.85);
+  background: rgba(13,15,18,0.92);
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
   backdrop-filter: blur(16px) saturate(1.2);
   border-bottom: 1px solid var(--color-border);
@@ -155,11 +179,8 @@ ul, ol { list-style: none; }
   transition: background 0.3s, border-color 0.3s;
 }
 
-[data-theme="dark"] .header,
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .header {
-    background: rgba(19,24,32,0.88);
-  }
+[data-theme="light"] .header {
+  background: rgba(255,255,255,0.92);
 }
 
 .header__inner {
@@ -191,7 +212,7 @@ ul, ol { list-style: none; }
   font-weight: 900;
   font-size: 1.125rem;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(198,40,40,0.25);
+  box-shadow: 0 2px 8px rgba(184,115,51,0.3);
 }
 .header__logo-text {
   font-size: 1.25rem;
@@ -200,15 +221,6 @@ ul, ol { list-style: none; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-[data-theme="dark"] .header__logo-text,
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .header__logo-text {
-    background: linear-gradient(135deg, #E6EDF3, #8B949E);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
 }
 .header__logo-suffix {
   font-weight: 300;
@@ -296,7 +308,7 @@ ul, ol { list-style: none; }
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
     z-index: 95;
-    box-shadow: -8px 0 24px rgba(0,0,0,0.1);
+    box-shadow: -8px 0 24px rgba(0,0,0,0.3);
   }
   .header__nav--open { transform: translateX(0); }
   .header__nav-link { width: 100%; padding: var(--gap-md); font-size: 1rem; }
@@ -304,7 +316,7 @@ ul, ol { list-style: none; }
 }
 
 /* ============================================
-   HERO
+   HERO — Industrial Workshop
    ============================================ */
 .hero {
   position: relative;
@@ -314,19 +326,27 @@ ul, ol { list-style: none; }
   overflow: hidden;
 }
 
-/* Industrial pattern overlay */
+/* Steel plate texture overlay */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.03;
+  opacity: 0.04;
   background-image:
-    linear-gradient(30deg, var(--color-primary) 12%, transparent 12.5%, transparent 87%, var(--color-primary) 87.5%),
-    linear-gradient(150deg, var(--color-primary) 12%, transparent 12.5%, transparent 87%, var(--color-primary) 87.5%),
-    linear-gradient(30deg, var(--color-primary) 12%, transparent 12.5%, transparent 87%, var(--color-primary) 87.5%),
-    linear-gradient(150deg, var(--color-primary) 12%, transparent 12.5%, transparent 87%, var(--color-primary) 87.5%);
-  background-size: 80px 140px;
-  background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+    repeating-linear-gradient(0deg, transparent, transparent 2px, var(--color-primary) 2px, var(--color-primary) 3px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, var(--color-secondary) 2px, var(--color-secondary) 3px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(184,115,51,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -436,7 +456,9 @@ ul, ol { list-style: none; }
 }
 
 .hero__featured-category {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -446,6 +468,9 @@ ul, ol { list-style: none; }
   width: fit-content;
   color: white;
   background: var(--cat-usinagem);
+}
+.hero__featured-category i {
+  font-size: 0.75rem;
 }
 
 .hero__featured-title {
@@ -585,7 +610,9 @@ ul, ol { list-style: none; }
 }
 
 .post-card__category {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -596,6 +623,10 @@ ul, ol { list-style: none; }
   color: white;
   background: var(--cat-usinagem);
 }
+.post-card__category i {
+  font-size: 0.7rem;
+}
+
 .post-card__category[data-category="usinagem"] { background: var(--cat-usinagem); }
 .post-card__category[data-category="ferramentas"] { background: var(--cat-ferramentas); }
 .post-card__category[data-category="maquinas"] { background: var(--cat-maquinas); }
@@ -691,6 +722,13 @@ ul, ol { list-style: none; }
   background: var(--color-surface-alt);
 }
 
+.sidebar__post-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+}
+
 .sidebar__post-title {
   font-size: 0.8125rem;
   font-weight: 600;
@@ -721,9 +759,19 @@ ul, ol { list-style: none; }
   transition: all 0.15s;
   text-decoration: none;
 }
+.sidebar__category i {
+  font-size: 0.9rem;
+  width: 20px;
+  text-align: center;
+  color: var(--color-text-muted);
+  transition: color 0.15s;
+}
 .sidebar__category:hover {
   background: var(--color-surface-hover);
   color: var(--color-text);
+}
+.sidebar__category:hover i {
+  color: var(--color-primary);
 }
 
 .sidebar__category-count {
@@ -767,7 +815,7 @@ ul, ol { list-style: none; }
 }
 .newsletter-form__button {
   padding: 11px 20px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: white;
   border: none;
   border-radius: var(--radius-md);
@@ -976,7 +1024,9 @@ ul, ol { list-style: none; }
 .article-header { margin-bottom: var(--gap-xl); }
 
 .article-category {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -986,6 +1036,9 @@ ul, ol { list-style: none; }
   margin-bottom: var(--gap-md);
   color: white;
   background: var(--cat-usinagem);
+}
+.article-category i {
+  font-size: 0.75rem;
 }
 
 .article-title {
@@ -1127,7 +1180,7 @@ ul, ol { list-style: none; }
   border-radius: 2px;
 }
 
-.category-icon { font-size: 3rem; margin-bottom: var(--gap-md); }
+.category-icon { font-size: 3rem; margin-bottom: var(--gap-md); color: var(--color-primary); }
 
 .category-title {
   font-size: clamp(1.5rem, 3vw, 2.2rem);
@@ -1208,7 +1261,7 @@ ul, ol { list-style: none; }
 
 .form-submit {
   padding: 12px 28px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: white;
   border: none;
   border-radius: var(--radius-md);
@@ -1247,7 +1300,7 @@ ul, ol { list-style: none; }
   padding: var(--gap-3xl);
   color: var(--color-text-muted);
 }
-.empty-state__icon { font-size: 3rem; margin-bottom: var(--gap-md); }
+.empty-state__icon { font-size: 3rem; margin-bottom: var(--gap-md); color: var(--color-primary); }
 .empty-state__text { font-size: 1.125rem; }
 
 /* ---- Print ---- */
