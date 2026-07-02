@@ -12,32 +12,49 @@
   </style>
   <script>
     (function() {
-      var path = window.location.pathname.replace(/\/+$/, ''); // remove trailing slash(es)
+      'use strict';
 
-      // Páginas estáticas: /sobre → sobre.html, etc.
-      var staticPages = ['/sobre', '/contato', '/anuncie', '/politica-de-privacidade', '/feed'];
-      if (staticPages.indexOf(path) !== -1) {
-        window.location.replace(path + '.html');
+      var fullPath = window.location.pathname.replace(/\/+$/, ''); // ex: /website/sobre → /website/sobre
+
+      // Detecta subdiretório (GitHub Pages project site)
+      // O subdiretório é o primeiro segmento se não for uma página conhecida
+      var segs = fullPath.split('/').filter(Boolean);
+      var knownPages = ['sobre','contato','anuncie','politica-de-privacidade','feed','categoria','artigo','public','admin','index'];
+      var siteBase = '';
+      var relPath = fullPath; // caminho relativo ao site
+
+      if (segs.length > 1 && knownPages.indexOf(segs[0]) === -1) {
+        // Primeiro segmento é o subdiretório (ex: /website)
+        siteBase = '/' + segs[0];
+        relPath = '/' + segs.slice(1).join('/');
+      }
+
+      // --- ROTEAMENTO ---
+
+      // Páginas estáticas: /sobre → /sobre.html
+      var staticPages = {'/sobre':1, '/contato':1, '/anuncie':1, '/politica-de-privacidade':1, '/feed':1};
+      if (relPath in staticPages) {
+        window.location.replace(siteBase + relPath + '.html');
         return;
       }
 
       // Páginas de categoria: /categoria ou /categoria/usinagem
-      var catMatch = path.match(/^\/categoria(?:\/([^\/]+))?/);
+      var catMatch = relPath.match(/^\/categoria(?:\/([^\/]+))?/);
       if (catMatch) {
         var cat = catMatch[1] || '';
-        window.location.replace('/categoria.html' + (cat ? '?cat=' + encodeURIComponent(cat) : ''));
+        window.location.replace(siteBase + '/categoria.html' + (cat ? '?cat=' + encodeURIComponent(cat) : ''));
         return;
       }
 
       // Páginas de artigo: /artigo/meu-slug
-      var artMatch = path.match(/^\/artigo\/([^\/]+)/);
+      var artMatch = relPath.match(/^\/artigo\/([^\/]+)/);
       if (artMatch) {
-        window.location.replace('/artigo.html?slug=' + encodeURIComponent(artMatch[1]));
+        window.location.replace(siteBase + '/artigo.html?slug=' + encodeURIComponent(artMatch[1]));
         return;
       }
 
       // Qualquer outra coisa: redireciona pra home
-      window.location.replace('/');
+      window.location.replace(siteBase + '/');
     })();
   </script>
 </head>
