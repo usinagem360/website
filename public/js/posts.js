@@ -134,10 +134,13 @@
           featured.innerHTML = top3.map((p, i) => renderFeaturedCard(p, i === 0)).join('');
         }
 
-        // Sidebar recent
+        // Sidebar "As mais lidas" — mostra posts em ordem diferente
+        // pra não repetir a mesma ordem da grid principal
         if (recent) {
-          const recentPosts = allPosts.slice(0, RECENT_COUNT);
-          recent.innerHTML = recentPosts.map(renderSidebarPost).join('');
+          // Embaralha uma cópia e pega os primeiros
+          var shuffled = allPosts.slice().sort(function() { return 0.5 - Math.random(); });
+          var sidebarPosts = shuffled.slice(0, RECENT_COUNT);
+          recent.innerHTML = sidebarPosts.map(renderSidebarPost).join('');
         }
 
         // Render page
