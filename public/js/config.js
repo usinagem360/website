@@ -2,20 +2,29 @@
 (function() {
   'use strict';
 
-  // Detecta automaticamente se está em subdiretório (GitHub Pages) ou raiz
+  // Detecta se o site está em subdiretório (GitHub Pages project site).
+  // Primeiros segmentos que pertencem ao PRÓPRIO site nunca são subdiretório —
+  // lista alinhada com o roteador do 404.html.
+  var OWN_SEGMENTS = [
+    'artigo', 'categoria', 'sobre', 'contato', 'anuncie',
+    'politica-de-privacidade', 'feed', 'admin', 'public', 'content', 'docs'
+  ];
+
   var path = window.location.pathname;
-  var match = path.match(/^(\/[^/]+)/);
-  window.SITE_BASE = (match && match[1] !== '/artigo' && match[1] !== '/categoria') ? match[1] : '';
+  var match = path.match(/^\/([^/]+)/);
+  var first = match ? match[1] : '';
+
+  // É subdiretório apenas se o primeiro segmento não for página/pasta do site
+  // e não for um arquivo (ex: index.html, artigo.html, sobre.html).
+  var isOwn = OWN_SEGMENTS.indexOf(first) !== -1 || first.indexOf('.') !== -1;
+  window.SITE_BASE = (first && !isOwn) ? '/' + first : '';
   var base = window.SITE_BASE;
 
-  if (!base) return; // Nada a corrigir se estiver na raiz
+  if (!base) return; // Nada a corrigir se estiver na raiz do domínio
 
-  // --- CORREÇÃO: prefixar links absolutos com SITE_BASE ---
-  // Quando o site está em subdiretório (ex: /website/), links como href="/sobre/"
-  // vão para a raiz do domínio em vez do subdiretório. Ex:
-  //   /sobre/ → /website/sobre/
-  //   /artigo/meu-slug/ → /website/artigo/meu-slug/
-  //   /categoria/ → /website/categoria/
+  // --- Prefixa links absolutos com SITE_BASE ---
+  // Em subdiretório (ex: /website/), href="/sobre/" iria para a raiz do domínio.
+  // Correção: /sobre/ → /website/sobre/
 
   function fixLink(a) {
     var href = a.getAttribute('href');
@@ -24,12 +33,11 @@
     if (href.indexOf('//') === 0 || href.indexOf('#') === 0 ||
         href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
     // Pular se já tem o prefixo
-    if (href.indexOf(base) === 0) return;
+    if (href.indexOf(base + '/') === 0 || href === base) return;
     // Pular URLs absolutas
     if (href.match(/^https?:\/\//i)) return;
-    // Pular se não começa com / (links relativos)
+    // Pular links relativos
     if (href.indexOf('/') !== 0) return;
-    // Adicionar o prefixo
     a.setAttribute('href', base + href);
   }
 
@@ -37,18 +45,17 @@
     document.querySelectorAll('a[href^="/"]').forEach(fixLink);
   }
 
-  // Corrige links existentes assim que o DOM estiver pronto
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fixAllLinks);
   } else {
     fixAllLinks();
   }
 
-  // Observa novos links adicionados dinamicamente (artigos, categorias, etc.)
+  // Observa links adicionados dinamicamente (posts, categorias, etc.)
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(m) {
       m.addedNodes.forEach(function(node) {
-        if (node.nodeType === 1) { // Element node
+        if (node.nodeType === 1) {
           if (node.tagName === 'A') fixLink(node);
           node.querySelectorAll && node.querySelectorAll('a[href^="/"]').forEach(fixLink);
         }
@@ -60,6 +67,5 @@
     subtree: true
   });
 
-  // Expõe função para reaplicar manualmente se necessário
   window.fixLinks = fixAllLinks;
 })();

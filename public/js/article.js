@@ -6,11 +6,7 @@
   'use strict';
 
   const POSTS_URL = 'content/posts/posts.json';
-  var CATEGORY_ICONS = {'usinagem': 'fi-rr-gears', 'ferramentas': 'fi-rr-wrench-alt', 'maquinas': 'fi-rr-cubes', 'automacao': 'fi-rr-robotic-arm', 'industria4.0': 'fi-rr-chart-network', 'ia': 'fi-rr-brain', 'negocios': 'fi-rr-chart-line-up', 'eventos': 'fi-rr-calendar'};
-  function iconHtml(cat) {
-    var cls = CATEGORY_ICONS[cat] || 'fi-rr-cubes';
-    return '<i class="' + cls + '" style="font-size:1.2em;vertical-align:middle"></i>';
-  }
+  const U = window.U360;
 
   const container = document.getElementById('article-container');
   const relatedContainer = document.getElementById('related-posts');
@@ -20,25 +16,24 @@
     const params = new URLSearchParams(window.location.search);
     const slugParam = params.get('slug');
     if (slugParam) return slugParam;
-    // Fallback: pathname (quando acessa artigo.html diretamente com URL limpa)
-    const path = window.location.pathname;
-    const match = path.match(/\/artigo\/([^/]+)\/?/);
-    return match ? match[1] : null;
+    // Fallback: pathname (quando acessa com URL limpa /artigo/meu-slug/)
+    const match = window.location.pathname.match(/\/artigo\/([^/]+)\/?/);
+    return match ? decodeURIComponent(match[1]) : null;
   }
 
   function renderArticle(post) {
     if (!post) {
       container.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state__icon"><i class="fi-rr-cubes" style="font-size:2rem"></i></div>
+          <div class="empty-state__icon"><i class="fi-rr-cubes"></i></div>
           <p class="empty-state__text">Artigo não encontrado.</p>
-          <a href="/" style="color:var(--color-primary);margin-top:16px;display:inline-block">← Voltar ao início</a>
+          <p class="empty-state__hint"><a href="/">← Voltar ao início</a></p>
         </div>
       `;
       return;
     }
 
-    // Update meta/SEO
+    // Meta/SEO
     document.title = `${post.title} — Usinagem360`;
     document.getElementById('meta-description').content = post.excerpt || '';
     document.getElementById('og-title').content = post.title;
@@ -46,29 +41,35 @@
     document.getElementById('og-url').content = window.location.href;
 
     // Breadcrumb
-    document.getElementById('breadcrumb-category').textContent = post.category;
-    document.getElementById('breadcrumb-category').href = `/categoria/${post.category}/`;
+    const cat = U.getCategory(post.category);
+    const bcCat = document.getElementById('breadcrumb-category');
+    bcCat.textContent = cat.label;
+    bcCat.href = `/categoria/${encodeURIComponent(post.category)}/`;
     document.getElementById('breadcrumb-title').textContent = post.title;
 
     const imgHtml = post.image
-      ? `<img class="article-featured-image" src="${post.image}" alt="${post.title}">`
+      ? `<img class="article-featured-image" src="${U.escapeHtml(post.image)}" alt="${U.escapeHtml(post.title)}">`
       : '';
 
     const contentHtml = post.content
-      ? post.content.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('')
+      ? post.content.split('\n\n').map(p => `<p>${U.escapeHtml(p.trim())}</p>`).join('')
       : '';
+
+    const sourceLink = post.sourceUrl
+      ? `<a href="${U.escapeHtml(post.sourceUrl)}" target="_blank" rel="noopener">${U.escapeHtml(post.source || 'Link original')}</a>`
+      : U.escapeHtml(post.source || '');
 
     container.innerHTML = `
       <header class="article-header">
-        <span class="article-category" style="background:var(--cat-${post.category})">${iconHtml(post.category)} ${post.category}</span>
-        <h1 class="article-title">${post.title}</h1>
+        ${U.categoryBadge(post.category)}
+        <h1 class="article-title">${U.escapeHtml(post.title)}</h1>
         <div class="article-meta">
           <span class="article-meta__author">
             <span class="article-meta__avatar">U</span>
-            ${post.author || 'Usinagem360'}
+            ${U.escapeHtml(post.author || 'Usinagem360')}
           </span>
-          <span>${formatDate(post.date)}</span>
-          ${post.source ? `<span>Fonte: <a href="${post.sourceUrl || '#'}" target="_blank" rel="noopener">${post.source}</a></span>` : ''}
+          <span>${U.formatDate(post.date)}</span>
+          ${post.source ? `<span>Fonte: ${sourceLink}</span>` : ''}
         </div>
       </header>
 
@@ -80,11 +81,11 @@
 
       ${post.sourceUrl ? `
       <div class="article-source">
-        <i class="fi-rr-link"></i> <strong>Fonte original:</strong> <a href="${post.sourceUrl}" target="_blank" rel="nofollow noopener">${post.source || 'Link original'}</a>
+        <i class="fi-rr-link"></i> <strong>Fonte original:</strong> <a href="${U.escapeHtml(post.sourceUrl)}" target="_blank" rel="nofollow noopener">${U.escapeHtml(post.source || 'Link original')}</a>
       </div>` : ''}
 
       <div class="article-tags">
-        <a href="/categoria/${post.category}/" class="article-tag">#${post.category}</a>
+        <a href="/categoria/${encodeURIComponent(post.category)}/" class="article-tag">#${U.escapeHtml(cat.label)}</a>
       </div>
     `;
   }
@@ -97,42 +98,26 @@
 
     if (sameCategory.length === 0) {
       relatedContainer.innerHTML = '';
+      const section = document.getElementById('related-section');
+      if (section) section.style.display = 'none';
       return;
     }
 
     relatedContainer.innerHTML = sameCategory.map(p => `
-      <a href="/artigo/${p.slug}/" class="post-card">
+      <a href="/artigo/${encodeURIComponent(p.slug)}/" class="post-card">
         ${p.image
-          ? `<img class="post-card__image" src="${p.image}" alt="${p.title}" loading="lazy">`
-          : `<div class="post-card__image-placeholder">${iconHtml(p.category)}</div>`}
+          ? `<img class="post-card__image" src="${U.escapeHtml(p.image)}" alt="${U.escapeHtml(p.title)}" loading="lazy">`
+          : `<div class="post-card__image-placeholder">${U.iconHtml(U.getCategory(p.category).icon)}</div>`}
         <div class="post-card__body">
           <div class="post-card__meta">
-            <span class="post-card__category" data-category="${p.category}">${p.category}</span>
-            <span>${formatDateShort(p.date)}</span>
+            ${U.categoryBadge(p.category)}
+            <span>${U.formatDateShort(p.date)}</span>
           </div>
-          <h3 class="post-card__title">${p.title}</h3>
-          <p class="post-card__excerpt">${p.excerpt || ''}</p>
+          <h3 class="post-card__title">${U.escapeHtml(p.title)}</h3>
+          <p class="post-card__excerpt">${U.escapeHtml(p.excerpt || '')}</p>
         </div>
       </a>
     `).join('');
-  }
-
-  function formatDate(dateStr) {
-    if (!dateStr) return '';
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return dateStr;
-    return d.toLocaleDateString('pt-BR', {
-      day: 'numeric', month: 'long', year: 'numeric'
-    });
-  }
-
-  function formatDateShort(dateStr) {
-    if (!dateStr) return '';
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return dateStr;
-    return d.toLocaleDateString('pt-BR', {
-      day: 'numeric', month: 'short'
-    });
   }
 
   function init() {
@@ -147,7 +132,7 @@
           .catch(() => {});
         return;
       }
-      container.innerHTML = '<div class="empty-state"><p>Artigo não encontrado.</p></div>';
+      renderArticle(null);
       return;
     }
 
@@ -160,7 +145,7 @@
       })
       .catch(err => {
         console.error('Erro ao carregar artigo:', err);
-        container.innerHTML = '<div class="empty-state"><p>Erro ao carregar o artigo.</p></div>';
+        container.innerHTML = '<div class="empty-state"><p class="empty-state__text">Erro ao carregar o artigo.</p></div>';
       });
   }
 

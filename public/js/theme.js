@@ -1,5 +1,8 @@
 /* ============================================
    Usinagem360 — Theme Toggle
+   O data-theme inicial é definido por um script
+   inline no <head> (evita flash de tema errado).
+   Aqui fica o toggle e a sincronização do ícone.
    ============================================ */
 
 (function() {
@@ -8,44 +11,44 @@
   const STORAGE_KEY = 'usinagem360-theme';
 
   function getPreferredTheme() {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'light' || stored === 'dark') return stored;
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-    return 'light';
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'light' || stored === 'dark') return stored;
+    } catch (e) { /* localStorage indisponível */ }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
-  function setTheme(theme) {
+  function setTheme(theme, persist) {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(STORAGE_KEY, theme);
+    if (persist) {
+      try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) { /* ignora */ }
+    }
+    updateToggleIcon(theme);
   }
 
   function toggleTheme() {
     const current = document.documentElement.getAttribute('data-theme') || getPreferredTheme();
-    const next = current === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    updateToggleIcon(next);
+    setTheme(current === 'dark' ? 'light' : 'dark', true);
   }
 
   function updateToggleIcon(theme) {
     const icon = document.getElementById('theme-toggle-icon');
     if (!icon) return;
+    // Mostra o tema para o qual o clique vai levar
     icon.innerHTML = theme === 'dark'
       ? '<i class="fi-rr-sun"></i>'
       : '<i class="fi-rr-moon"></i>';
   }
 
-  // Init
-  const theme = getPreferredTheme();
-  setTheme(theme);
+  // Init: garante data-theme e ícone coerentes
+  setTheme(document.documentElement.getAttribute('data-theme') || getPreferredTheme(), false);
 
-  // Listen for system changes
+  // Acompanha mudanças do sistema enquanto o usuário não escolheu manualmente
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      setTheme(e.matches ? 'dark' : 'light');
-      updateToggleIcon(e.matches ? 'dark' : 'light');
-    }
+    let stored = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (err) { /* ignora */ }
+    if (!stored) setTheme(e.matches ? 'dark' : 'light', false);
   });
 
-  // Expose
   window.toggleTheme = toggleTheme;
 })();

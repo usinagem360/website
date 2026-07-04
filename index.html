@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +11,9 @@
   <meta property="og:url" content="https://usinagem360.com">
   <meta name="twitter:card" content="summary_large_image">
   <title>Usinagem360 | Notícias de Usinagem, Indústria e Tecnologia</title>
-  <script>document.documentElement.style.setProperty('--site-base', `/${(window.location.pathname.match(/^\/([^/]+)/)||[])[1]||''}`.replace(/\/$/,'')||'');</script>
-  <link rel="stylesheet" href="public/css/style.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <script>(function(){try{var t=localStorage.getItem('usinagem360-theme');if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','light')}})();</script>
+  <link rel="stylesheet" href="public/css/style.css?v3">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23A6672C'/><text x='50' y='72' font-size='64' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>U</text></svg>">
 </head>
 <body>
 
@@ -28,7 +28,7 @@
         </span>
       </a>
 
-      <nav class="header__nav" id="nav">
+      <nav class="header__nav" id="nav" aria-label="Navegação principal">
         <a href="/" class="header__nav-link header__nav-link--active">Início</a>
         <a href="/categoria/usinagem/" class="header__nav-link">Usinagem</a>
         <a href="/categoria/ferramentas/" class="header__nav-link">Ferramentas</a>
@@ -37,7 +37,7 @@
         <a href="/sobre/" class="header__nav-link">Sobre</a>
       </nav>
 
-      <div style="display:flex;align-items:center;gap:8px">
+      <div class="header__actions">
         <button class="theme-toggle" onclick="window.toggleTheme()" aria-label="Alternar tema">
           <span class="theme-toggle__icon" id="theme-toggle-icon"><i class="fi-rr-moon"></i></span>
         </button>
@@ -52,6 +52,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero__inner">
+      <p class="hero__kicker">Usinagem · CNC · Automação · Indústria 4.0</p>
       <h1 class="hero__headline">
         As <span class="hero__headline-highlight">principais notícias</span><br>
         do mundo da indústria
@@ -64,7 +65,7 @@
 
       <!-- Featured Posts -->
       <div class="hero__featured" id="featured-posts">
-        <!-- Injected by JS from posts.json, with fallback -->
+        <!-- Injetado via JS a partir do posts.json -->
       </div>
     </div>
   </section>
@@ -95,18 +96,16 @@
     <aside class="sidebar">
 
       <!-- Ad Zone -->
-      <div class="sidebar__card">
-        <div class="ad-zone">
-          <span class="ad-zone__label">Publicidade</span>
-          <span>Seu anúncio aqui</span>
-        </div>
+      <div class="ad-zone">
+        <span class="ad-zone__label">Publicidade</span>
+        <span>Seu anúncio aqui</span>
       </div>
 
-      <!-- Recentes -->
+      <!-- Mais notícias -->
       <div class="sidebar__card">
-        <h3 class="sidebar__title">As mais lidas</h3>
-        <div id="sidebar-recent">
-          <div class="loading-spinner" style="padding:16px 0">Carregando...</div>
+        <h3 class="sidebar__title">Mais notícias</h3>
+        <div class="sidebar__posts" id="sidebar-recent">
+          <div class="loading-spinner">Carregando</div>
         </div>
       </div>
 
@@ -114,35 +113,35 @@
       <div class="sidebar__card">
         <h3 class="sidebar__title">Categorias</h3>
         <div class="sidebar__categories">
-          <a href="/categoria/usinagem/" class="sidebar__category">
+          <a href="/categoria/usinagem/" class="sidebar__category" data-category="usinagem">
             <span>Usinagem</span>
             <span class="sidebar__category-count">—</span>
           </a>
-          <a href="/categoria/ferramentas/" class="sidebar__category">
+          <a href="/categoria/ferramentas/" class="sidebar__category" data-category="ferramentas">
             <span>Ferramentas</span>
             <span class="sidebar__category-count">—</span>
           </a>
-          <a href="/categoria/maquinas/" class="sidebar__category">
+          <a href="/categoria/maquinas/" class="sidebar__category" data-category="maquinas">
             <span>Máquinas</span>
             <span class="sidebar__category-count">—</span>
           </a>
-          <a href="/categoria/automacao/" class="sidebar__category">
+          <a href="/categoria/automacao/" class="sidebar__category" data-category="automacao">
             <span>Automação</span>
             <span class="sidebar__category-count">—</span>
           </a>
-          <a href="/categoria/industria4.0/" class="sidebar__category">
+          <a href="/categoria/industria4.0/" class="sidebar__category" data-category="industria4.0">
             <span>Indústria 4.0</span>
             <span class="sidebar__category-count">—</span>
           </a>
-          <a href="/categoria/ia/" class="sidebar__category">
+          <a href="/categoria/ia/" class="sidebar__category" data-category="ia">
             <span>IA na Indústria</span>
             <span class="sidebar__category-count">—</span>
           </a>
-          <a href="/categoria/negocios/" class="sidebar__category">
+          <a href="/categoria/negocios/" class="sidebar__category" data-category="negocios">
             <span>Negócios</span>
             <span class="sidebar__category-count">—</span>
           </a>
-          <a href="/categoria/eventos/" class="sidebar__category">
+          <a href="/categoria/eventos/" class="sidebar__category" data-category="eventos">
             <span>Eventos</span>
             <span class="sidebar__category-count">—</span>
           </a>
@@ -153,18 +152,16 @@
       <div class="sidebar__card">
         <h3 class="sidebar__title">Newsletter</h3>
         <p class="newsletter-form__text">Receba as principais notícias da usinagem direto no seu email.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault();alert('Newsletter em breve!');">
+        <form class="newsletter-form js-newsletter">
           <input type="email" class="newsletter-form__input" placeholder="Seu melhor email" required>
           <button type="submit" class="newsletter-form__button">Assinar grátis</button>
         </form>
       </div>
 
       <!-- Ad Zone 2 -->
-      <div class="sidebar__card">
-        <div class="ad-zone">
-          <span class="ad-zone__label">Publicidade</span>
-          <span>Seu anúncio aqui</span>
-        </div>
+      <div class="ad-zone">
+        <span class="ad-zone__label">Publicidade</span>
+        <span>Seu anúncio aqui</span>
       </div>
     </aside>
   </div>
@@ -178,7 +175,7 @@
           <span>Usinagem360</span>
         </a>
         <p class="footer__description">
-          O portal de notícias independente sobre usinagem, ferramentas de corte, 
+          O portal de notícias independente sobre usinagem, ferramentas de corte,
           máquinas CNC, automação industrial e Indústria 4.0 no Brasil.
         </p>
         <div class="footer__social">
@@ -201,27 +198,25 @@
         <h4 class="footer__column-title">Links</h4>
         <a href="/sobre/" class="footer__link">Sobre</a>
         <a href="/contato/" class="footer__link">Contato</a>
-        <a href="/anuncie/" class="footer__link">Anuncie</a>
-        <a href="/politica-de-privacidade/" class="footer__link">Política de Privacidade</a>
-        <a href="/feed/" class="footer__link">Feed RSS</a>
+        <a href="/categoria/" class="footer__link">Todas as categorias</a>
       </div>
       <div>
         <h4 class="footer__column-title">Parceiros</h4>
-        <a href="#" class="footer__link">Seja um parceiro</a>
-        <a href="#" class="footer__link">Indique uma fonte</a>
-        <a href="#" class="footer__link">Sugira uma pauta</a>
+        <a href="/contato/" class="footer__link">Seja um parceiro</a>
+        <a href="/contato/" class="footer__link">Indique uma fonte</a>
+        <a href="/contato/" class="footer__link">Sugira uma pauta</a>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; <span id="current-year">2025</span> Usinagem360. Todos os direitos reservados.</span>
-      <span>Usinagem360 — Informação que move a indústria</span>
+      <span>&copy; <span id="current-year">2026</span> Usinagem360. Todos os direitos reservados.</span>
+      <span>Informação que move a indústria</span>
     </div>
   </footer>
 
-  <script src="public/js/config.js?v2"></script>
-  <script src="public/js/theme.js?v2"></script>
-  <script src="public/js/main.js?v2"></script>
-  <script src="public/js/posts.js?v2"></script>
+  <script src="public/js/config.js?v3"></script>
+  <script src="public/js/categories.js?v3"></script>
+  <script src="public/js/theme.js?v3"></script>
+  <script src="public/js/main.js?v3"></script>
+  <script src="public/js/posts.js?v3"></script>
 </body>
 </html>
-

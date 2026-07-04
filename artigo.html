@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,9 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="" id="og-url">
   <title id="page-title">Usinagem360 — Notícias</title>
-  <link rel="stylesheet" href="public/css/style.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <script>(function(){try{var t=localStorage.getItem('usinagem360-theme');if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','light')}})();</script>
+  <link rel="stylesheet" href="public/css/style.css?v3">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23A6672C'/><text x='50' y='72' font-size='64' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>U</text></svg>">
 </head>
 <body>
 
@@ -20,7 +21,7 @@
         <span class="header__logo-icon">U</span>
         <span><span class="header__logo-text">Usinagem</span><span class="header__logo-suffix">360</span></span>
       </a>
-      <nav class="header__nav" id="nav">
+      <nav class="header__nav" id="nav" aria-label="Navegação principal">
         <a href="/" class="header__nav-link">Início</a>
         <a href="/categoria/usinagem/" class="header__nav-link">Usinagem</a>
         <a href="/categoria/ferramentas/" class="header__nav-link">Ferramentas</a>
@@ -28,7 +29,7 @@
         <a href="/categoria/negocios/" class="header__nav-link">Negócios</a>
         <a href="/sobre/" class="header__nav-link">Sobre</a>
       </nav>
-      <div style="display:flex;align-items:center;gap:8px">
+      <div class="header__actions">
         <button class="theme-toggle" onclick="window.toggleTheme()" aria-label="Alternar tema">
           <span class="theme-toggle__icon" id="theme-toggle-icon"><i class="fi-rr-moon"></i></span>
         </button>
@@ -39,29 +40,29 @@
   <div class="header__mobile-overlay" id="mobile-overlay"></div>
 
   <!-- Breadcrumb -->
-  <div class="main" style="padding-bottom:0;grid-template-columns:1fr">
-    <div class="breadcrumb">
+  <div class="breadcrumb-wrap breadcrumb-wrap--narrow">
+    <nav class="breadcrumb" aria-label="Trilha de navegação">
       <a href="/">Início</a>
       <span class="breadcrumb__separator">/</span>
       <a href="" id="breadcrumb-category"></a>
       <span class="breadcrumb__separator">/</span>
-      <span id="breadcrumb-title"></span>
-    </div>
+      <span class="breadcrumb__current" id="breadcrumb-title"></span>
+    </nav>
   </div>
 
   <!-- Article Content -->
   <article class="article-page" id="article-container">
-    <div class="loading-spinner">Carregando artigo...</div>
+    <div class="loading-spinner">Carregando artigo</div>
   </article>
 
   <!-- Related Posts -->
-  <div class="main" style="grid-template-columns:1fr">
+  <div class="main main--single" id="related-section">
     <section>
       <div class="section-header">
         <h2 class="section-title">Notícias Relacionadas</h2>
       </div>
       <div class="posts-grid" id="related-posts">
-        <div class="loading-spinner">Carregando...</div>
+        <div class="loading-spinner">Carregando</div>
       </div>
     </section>
   </div>
@@ -72,10 +73,10 @@
         <a href="/" class="footer__logo"><span class="footer__logo-icon">U</span><span>Usinagem360</span></a>
         <p class="footer__description">O portal de notícias independente sobre usinagem, ferramentas de corte, máquinas CNC, automação industrial e Indústria 4.0 no Brasil.</p>
         <div class="footer__social">
-          <a href="#" class="footer__social-link">in</a>
-          <a href="#" class="footer__social-link">YT</a>
-          <a href="#" class="footer__social-link">IG</a>
-          <a href="#" class="footer__social-link">X</a>
+          <a href="#" class="footer__social-link" aria-label="LinkedIn">in</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">YT</a>
+          <a href="#" class="footer__social-link" aria-label="Instagram">IG</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter/X">X</a>
         </div>
       </div>
       <div>
@@ -91,24 +92,25 @@
         <h4 class="footer__column-title">Links</h4>
         <a href="/sobre/" class="footer__link">Sobre</a>
         <a href="/contato/" class="footer__link">Contato</a>
-        <a href="/anuncie/" class="footer__link">Anuncie</a>
-        <a href="/politica-de-privacidade/" class="footer__link">Política de Privacidade</a>
+        <a href="/categoria/" class="footer__link">Todas as categorias</a>
       </div>
       <div>
         <h4 class="footer__column-title">Parceiros</h4>
-        <a href="#" class="footer__link">Seja um parceiro</a>
-        <a href="#" class="footer__link">Indique uma fonte</a>
-        <a href="#" class="footer__link">Sugira uma pauta</a>
+        <a href="/contato/" class="footer__link">Seja um parceiro</a>
+        <a href="/contato/" class="footer__link">Indique uma fonte</a>
+        <a href="/contato/" class="footer__link">Sugira uma pauta</a>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>&copy; <span id="current-year">2025</span> Usinagem360</span>
+      <span>&copy; <span id="current-year">2026</span> Usinagem360. Todos os direitos reservados.</span>
+      <span>Informação que move a indústria</span>
     </div>
   </footer>
 
-  <script src="public/js/config.js?v2"></script>
-  <script src="public/js/theme.js?v2"></script>
-  <script src="public/js/main.js?v2"></script>
-  <script src="public/js/article.js?v2"></script>
+  <script src="public/js/config.js?v3"></script>
+  <script src="public/js/categories.js?v3"></script>
+  <script src="public/js/theme.js?v3"></script>
+  <script src="public/js/main.js?v3"></script>
+  <script src="public/js/article.js?v3"></script>
 </body>
 </html>

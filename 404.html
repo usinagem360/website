@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecionando...</title>
   <style>
-    body { font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #0d1117; color: #c9d1d9; }
+    body { font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #0C0E11; color: #9BA1AA; border-top: 3px solid #C98A4B; }
+    @media (prefers-color-scheme: light) { body { background: #F5F4F1; color: #52565E; border-top-color: #A6672C; } }
     .loader { text-align: center; }
-    .spinner { width: 40px; height: 40px; border: 3px solid #30363d; border-top-color: #58a6ff; border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 16px; }
+    .spinner { width: 40px; height: 40px; border: 3px solid #2A2F37; border-top-color: #C98A4B; border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 16px; }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
   <script>
