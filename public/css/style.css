@@ -453,6 +453,17 @@ ul, ol { list-style: none; }
 }
 .hero__featured-card--main .hero__featured-image { min-height: 300px; }
 
+/* Cards secundários: imagem e texto ficam em linhas separadas da grid.
+   Sem uma altura fixa, fotos em retrato esticam a linha ao tamanho
+   natural da foto e empurram o corpo do card pra muito longe.
+   Proporção fixa mantém o card compacto e previsível. */
+.hero__featured-card:not(.hero__featured-card--main) .hero__featured-image,
+.hero__featured-card:not(.hero__featured-card--main) .hero__featured-image-placeholder {
+  height: auto;
+  aspect-ratio: 16 / 10;
+  min-height: 0;
+}
+
 .hero__featured-image-placeholder {
   min-height: 180px;
   background:
